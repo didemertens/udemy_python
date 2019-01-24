@@ -54,7 +54,13 @@ def full_board_check(board):
     if space_check(board, position):
       return False
   return True
-
+'''
+you can also do:
+if " " in board[1:]:
+  return False
+else:
+  return True
+'''
 #print(full_board_check(test_board))
 
 def player_choice(board):
@@ -99,7 +105,7 @@ while True:
         if full_board_check(board_game):
           display_board(board_game)
           print("It's a draw.")
-          break
+          playing = False
         else:
           player_turn = 'Player 2'
 
@@ -117,7 +123,7 @@ while True:
         if full_board_check(board_game):
           display_board(board_game)
           print("It's a draw.")
-          break
+          playing = False
         else:
           player_turn = 'Player 1'
 
