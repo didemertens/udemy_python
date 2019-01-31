@@ -3,6 +3,7 @@
 # build in variable called __name__ which gets assigned a string, if you run
 # the script in terminal, can test if the py file is run directly, can organise
 # beneath the if statement, what you actually want to execute
+# usually you just use the if statement, and then call the functions you want to run
 
 def func():
   print("FUNC() IN ONE.PY")
