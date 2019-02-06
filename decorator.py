@@ -53,5 +53,36 @@ def other(some_def_func):
 #other(hello)
 
 
+def new_decorator(original_func):
+# Extra functionality in the function before original
+# Decorator, because you wrap the function
+  def wrap_func():
+    print("Some extra code before original")
+
+    original_func()
+
+    print("Some extra code after original")
+
+  return wrap_func
+
+def func_needs_decorator():
+  print("I want to be decorated!")
+
+#decorated_func = new_decorator(func_needs_decorator)
+#decorated_func()
+
+
+# Special syntax for line 71
+
+# TO CREATE NEW DECORATOR:
+
+@new_decorator
+def func_needs_decorator():
+  print("I want to be decorated!")
+
+func_needs_decorator()
+
+
+
 
 
