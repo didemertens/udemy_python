@@ -13,9 +13,9 @@ def reverse_string(s):
 # of products. Create a product class which has a price, id, and quantity on hand.
 #Then create an inventory class which keeps track of various products and can sum up the inventory value.
 
-class Products:
+class Product:
 
-  def __init__(self, product, price, id, quantity):
+  def __init__(self, product=None, price=0, id=0, quantity=0):
     self.product = product
     self.price = price
     self.id = id
@@ -26,22 +26,15 @@ class Products:
 
 class Inventory():
 
-  def __init__ (self):
-    self.listproducts = []
+  def __init__(self,price,quantity):
+    self.products = []
+
+  def total_value(self):
+    return (product_1.quantity * product_1.price)
 
 
+product_1 = Product('apples', 2, 1234, 40)
+product_2 = Product('oranges', 3, 2345, 60)
 
-
-
-apples = Products('apples', 1.99, 1234, 40)
-#print(apples.price)
-#print(apples.__str__())
-oranges = Products('oranges', 1.89, 2345, 60)
-
-Inventory.add_products(apples)
-Inventory.add_products(oranges)
-
-
-#print(Inventory.total_value())
-
-
+inventory1 = Inventory(product_1.price, product_1.quantity)
+print(inventory1.total_value())
