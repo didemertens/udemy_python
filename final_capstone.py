@@ -26,15 +26,23 @@ class Product:
 
 class Inventory():
 
-  def __init__(self,price,quantity):
-    self.products = []
+  def __init__(self, product_list=[]):
+    self.products = product_list
+
+  def add_product(self, product):
+    self.products.append(product)
 
   def total_value(self):
-    return (product_1.quantity * product_1.price)
+    total_value = 0
+    for product in self.products:
+      total_value += (product.quantity * product.price)
+    return total_value
 
 
-product_1 = Product('apples', 2, 1234, 40)
-product_2 = Product('oranges', 3, 2345, 60)
+product_1 = Product('apples', 2, 1234, 5)
+product_2 = Product('oranges', 2, 2345, 5)
 
-inventory1 = Inventory(product_1.price, product_1.quantity)
+inventory1 = Inventory([product_1,product_2])
+# inventory1.add_product(product_1)
+# inventory1.add_product(product_2)
 print(inventory1.total_value())
