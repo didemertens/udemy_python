@@ -57,11 +57,20 @@ class HotelBookings:
         continue
     return check_out_date
 
+  def date_range(date1, date2):
+    date_range = []
+    for date in range(int ((date2 - date1).days)+1):
+      date_range.append(date1 + timedelta(date))
+    return date_range
 
 
 
 check_in_date = HotelBookings.check_in_date()
-check_out = HotelBookings.check_out_date(check_in_date)
+check_out_date = HotelBookings.check_out_date(check_in_date)
+date_range = HotelBookings.date_range(check_in_date,check_out_date)
+print(date_range)
+
+
 
 
 
