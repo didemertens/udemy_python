@@ -4,12 +4,29 @@ books airline seats or hotel rooms. It charges various rates for particular
 ections of the plane or hotel. Example, first class is going to cost more
 than coach. Hotel rooms have penthouse suites which cost more. Keep track
 of when rooms will be available and can be scheduled.
+
+Start application
+  > Start loop
+Print welcome text
+Show different rooms/prices
+  > Show dictionairy of room/prices
+User chooses room
+  > Save choice
+User input check-in/check-out dates
+  > Run functions
+  > Check availability for chosen room
+Show total price for stay
+  > Nights * room price
+Ask if they want to book
+  > Save room/dates or not
+Print end text
+Sleep for 3 seconds
+Loop
 '''
 
 from datetime import *
 
-
-class HotelBookings:
+class Hotel:
 
   def __init__self(self, room_type, nights):
     self.room_type = room
@@ -18,6 +35,8 @@ class HotelBookings:
 
     room_prices = {'Basic Room':50, 'Family Room':100, 'Suite':50}
 
+
+class BookingDates:
 
 # Ask for the check-in date
   def check_in_date():
@@ -65,10 +84,10 @@ class HotelBookings:
 
 
 
-check_in_date = HotelBookings.check_in_date()
-check_out_date = HotelBookings.check_out_date(check_in_date)
-date_range = HotelBookings.date_range(check_in_date,check_out_date)
-print(date_range)
+# check_in_date = BookingDates.check_in_date()
+# check_out_date = BookingDates.check_out_date(check_in_date)
+# date_range = BookingDates.date_range(check_in_date,check_out_date)
+# print(date_range)
 
 
 
