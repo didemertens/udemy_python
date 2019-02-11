@@ -9,7 +9,7 @@ of when rooms will be available and can be scheduled.
 from datetime import *
 
 
-class Hotel:
+class HotelBookings:
 
   def __init__self(self, room_type, nights):
     self.room_type = room
@@ -19,38 +19,50 @@ class Hotel:
     room_prices = {'Basic Room':50, 'Family Room':100, 'Suite':50}
 
 
-# Ask arrival date
-  def arrival_date():
-    arrival_dates = []
+# Ask for the check-in date
+  def check_in_date():
     current_date = date.today()
     while True:
       try:
         d1, m1, y1= [int(x) for x in input('Enter your arrival date (dd-mm-yyyy): ').split('-')]
-        guest_date = date(y1,m1,d1)
-        # guest_month = int(input('Enter the month (mm): '))
-        # # # guest_day = int(input('Enter the day (dd): '))
-        # # # guest_date = datetime.strptime(guest_year, guest_month, guest_day)
-        if guest_date == current_date:
-          arrival_dates.append(guest_date)
-          break
-        elif guest_date > current_date:
-          arrival_dates.append(guest_date)
+        check_in_date = date(y1,m1,d1)
+        if check_in_date >= current_date:
+          print('OK!')
           break
         else:
-          print('Not a valid date.')
+          print('Please use a valid date.')
           continue
       except ValueError:
-        print('Please enter a valid date.')
+        print('Please use the given format.')
         continue
-    return arrival_dates
+    return check_in_date
 
 
-# Ask the amount of nights
-  def amount_nights():
-    guest_nights = input('How many nights do you want to stay? ')
+
+# Ask for the check-out date
+  def check_out_date(check_in_date):
+    current_date = date.today()
+    while True:
+      try:
+        d1, m1, y1= [int(x) for x in input('Enter your check-out date (dd-mm-yyyy): ').split('-')]
+        check_out_date = date(y1,m1,d1)
+        if check_out_date > check_in_date:
+          print('Booked!')
+          break
+        else:
+          print('Please use a valid date.')
+          continue
+      except ValueError:
+        print('Please use the given format.')
+        continue
+    return check_out_date
 
 
-print(Hotel.arrival_date())
+
+
+check_in_date = HotelBookings.check_in_date()
+check_out = HotelBookings.check_out_date(check_in_date)
+
 
 
 
