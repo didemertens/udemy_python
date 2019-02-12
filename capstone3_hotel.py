@@ -26,14 +26,49 @@ Loop
 
 from datetime import *
 
-class Hotel:
+class Rooms:
 
-  def __init__self(self, room_type, nights):
-    self.room_type = room
-    self.nights = nights
+  def __init__(self):
+    self.basic_room = {'Basic Room':50}
+    self.family_room = {'Family Room' : 100}
+    self.suite = {'Suite' : 150}
+
+  def show_rooms(self):
+    print(f"The Basic Room costs £{self.basic_room['Basic Room']} a night.")
+    print(f"The Family Room costs £{self.family_room['Family Room']} a night.")
+    print(f"The Suite costs £{self.suite['Suite']} a night.")
+
+  def choice_room(self):
+    user_choice = ''
+    while True:
+      user_input = input("\nPlease choose a room: ").lower()
+      if 'basic' in user_input:
+        user_choice = self.basic_room
+        break
+      elif 'family' in user_input:
+        user_choice = self.family_room
+        break
+      elif 'suite' in user_input:
+        user_choice = self.suite
+        break
+      else:
+        print("Please enter a room from the list above.")
+        continue
+    return user_choice
 
 
-    room_prices = {'Basic Room':50, 'Family Room':100, 'Suite':50}
+'''
+  def __init__(self, room, price):
+    self.room = room
+    self.price = price
+
+  def __str__(self):
+    return f"{self.room} costs {self.price} a night."
+
+
+basic_room = Hotel('Basic room', 50)
+print(basic_room.__str__())
+'''
 
 
 class BookingDates:
@@ -66,7 +101,7 @@ class BookingDates:
         d1, m1, y1= [int(x) for x in input('Enter your check-out date (dd-mm-yyyy): ').split('-')]
         check_out_date = date(y1,m1,d1)
         if check_out_date > check_in_date:
-          print('Booked!')
+          print('We are going to check the availability!')
           break
         else:
           print('Please use a valid date.')
@@ -83,11 +118,19 @@ class BookingDates:
     return date_range
 
 
+while True:
+  print("Hello there! We're glad you've chosen Hotel California for your next trip.\nPlease view the below rooms and prices and make a choice.\n")
+  room_booking = Rooms()
+  room_booking.show_rooms()
+  print(room_booking.choice_room())
 
-# check_in_date = BookingDates.check_in_date()
-# check_out_date = BookingDates.check_out_date(check_in_date)
-# date_range = BookingDates.date_range(check_in_date,check_out_date)
-# print(date_range)
+  check_in_date = BookingDates.check_in_date()
+  check_out_date = BookingDates.check_out_date(check_in_date)
+  date_range = BookingDates.date_range(check_in_date,check_out_date)
+  print(date_range)
+  break
+
+
 
 
 
