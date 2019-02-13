@@ -56,6 +56,7 @@ class Rooms:
         continue
     return user_choice
 
+  def dates_rooms(self):
 
 '''
   def __init__(self, room, price):
