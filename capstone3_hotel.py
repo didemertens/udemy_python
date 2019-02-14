@@ -1,9 +1,8 @@
 '''
-Airline / Hotel Reservation System - Create a reservation system which
-books airline seats or hotel rooms. It charges various rates for particular
-ections of the plane or hotel. Example, first class is going to cost more
-than coach. Hotel rooms have penthouse suites which cost more. Keep track
-of when rooms will be available and can be scheduled.
+Hotel Reservation System - Create a reservation system which
+books hotel rooms. It charges various rates for particular
+ections of the hotel. Example, hotel rooms have penthouse suites which cost more.
+Keep track of when rooms will be available and can be scheduled.
 
 Start application
   > Start loop
@@ -20,8 +19,16 @@ Show total price for stay
 Ask if they want to book
   > Save room/dates or not
 Print end text
-Sleep for 3 seconds
 Loop
+
+TO DO:
+
+Show total price for stay
+  > Nights * room price
+Ask if they want to book
+  > Save room/dates or not
+  > delete dates if unavailable
+
 '''
 
 from datetime import *
@@ -139,8 +146,6 @@ class BookingDates:
 
   # Print hello message, show rooms and ask for room choice
 print("Hello there! We're glad you've chosen Hotel California for your next trip.")
-
-
 room_booking = Rooms()
 
 while True:
@@ -167,13 +172,3 @@ while True:
     continue
   elif 'n' == user_continue[0].lower():
     break
-
-
-
-
-
-
-
-
-
-
