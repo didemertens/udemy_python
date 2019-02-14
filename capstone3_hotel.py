@@ -29,9 +29,9 @@ from datetime import *
 class Rooms:
 
   def __init__(self):
-    self.basic_room = {'Basic Room':50}
-    self.family_room = {'Family Room' : 100}
-    self.suite = {'Suite' : 150}
+    self.basic_room = {'Basic Room' : 50, 'Dates': [],}
+    self.family_room = {'Family Room' : 100, 'Dates': [],}
+    self.suite = {'Suite' : 150, 'Dates' : [],}
 
   def show_rooms(self):
     print(f"The Basic Room costs £{self.basic_room['Basic Room']} a night.")
@@ -43,33 +43,51 @@ class Rooms:
     while True:
       user_input = input("\nPlease choose a room: ").lower()
       if 'basic' in user_input:
-        user_choice = self.basic_room
+        user_choice = 'Basic room'
         break
       elif 'family' in user_input:
-        user_choice = self.family_room
+        user_choice = 'Family room'
         break
       elif 'suite' in user_input:
-        user_choice = self.suite
+        user_choice = 'Suite'
         break
       else:
         print("Please enter a room from the list above.")
         continue
     return user_choice
 
-  def dates_rooms(self):
+  def dates_rooms(self, user_choice, date_range):
+    if 'Basic' in user_choice:
+      self.basic_room['Dates'].append(date_range)
+    elif 'Family' in user_choice:
+      self.family_room['Dates'].append(date_range)
+    elif 'Suite' in user_choice:
+      self.suite['Dates'].append(date_range)
 
-'''
-  def __init__(self, room, price):
-    self.room = room
-    self.price = price
+# Plus, date range that isn't booked should be removed
 
-  def __str__(self):
-    return f"{self.room} costs {self.price} a night."
-
-
-basic_room = Hotel('Basic room', 50)
-print(basic_room.__str__())
-'''
+  def available_rooms(self, user_choice, date_range):
+    availability = True
+    unique_list = []
+    if 'Basic' in user_choice:
+      for item in self.basic_room['Dates']:
+        if item in unique_list:
+          availability = False
+        else:
+          unique_list.append(item)
+    elif 'Family' in user_choice:
+      for item in self.baic_room['Dates']:
+        if item in unique_list:
+          availability = False
+        else:
+          unique_list.append(item)
+    elif 'Suite' in user_choice:
+      for item in self.suite['Dates']:
+        if item in unique_list:
+          availability = False
+        else:
+          unique_list.append(item)
+    return availability
 
 
 class BookingDates:
@@ -119,17 +137,36 @@ class BookingDates:
     return date_range
 
 
-while True:
-  print("Hello there! We're glad you've chosen Hotel California for your next trip.\nPlease view the below rooms and prices and make a choice.\n")
-  room_booking = Rooms()
-  room_booking.show_rooms()
-  print(room_booking.choice_room())
+  # Print hello message, show rooms and ask for room choice
+print("Hello there! We're glad you've chosen Hotel California for your next trip.")
 
+
+room_booking = Rooms()
+
+while True:
+  print("\nPlease view the below rooms and prices and make a choice.\n")
+  room_booking.show_rooms()
+  user_choice = room_booking.choice_room()
+
+  # Ask for room dates
   check_in_date = BookingDates.check_in_date()
   check_out_date = BookingDates.check_out_date(check_in_date)
   date_range = BookingDates.date_range(check_in_date,check_out_date)
-  print(date_range)
-  break
+
+  # Add the dates to dict. of room to be able to check for availability
+  room_booking.dates_rooms(user_choice, date_range)
+  availability = room_booking.available_rooms(user_choice, date_range)
+
+  if availability == False:
+    print("Sorry this room is unavailable.\n")
+  else:
+    print('Booked!\n')
+
+  user_continue = input('Do you want to book another room? y/n ')
+  if 'y' == user_continue[0].lower():
+    continue
+  elif 'n' == user_continue[0].lower():
+    break
 
 
 
